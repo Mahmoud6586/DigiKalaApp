@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -51,6 +53,12 @@ android {
 
 dependencies {
 
+    val retrofit_version = "2.9.0"
+    val room_version = "2.3.0"
+    val datastore_version = "1.0.0"
+    val hilt_version = "2.44"
+
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -66,4 +74,61 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //retrofit
+    implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofit_version")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
+
+    //room
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+
+    //datastore
+    implementation("androidx.datastore:datastore-preferences:$datastore_version")
+
+    //hilt di
+    implementation ("com.google.dagger:hilt-android:$hilt_version")
+    kapt ("com.google.dagger:hilt-compiler:$hilt_version")
+    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
+
+    //compose navigation
+    implementation ("androidx.navigation:navigation-compose:2.7.7")
+
+    //animation
+    implementation ("com.airbnb.android:lottie-compose:6.5.0")
+
+    //coil - load image from url
+    implementation ("io.coil-kt:coil-compose:2.7.0")
+
+    //swipe refresh
+    implementation ("com.google.accompanist:accompanist-swiperefresh:0.27.0")
+
+    //system ui controller
+    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.28.0")
+
+
+    //Accompanist-Pager
+    implementation ("com.google.accompanist:accompanist-pager:0.29.0-alpha")
+    implementation ("com.google.accompanist:accompanist-pager-indicators:0.29.0-alpha")
+
+
+    //zarinpal
+//    implementation ("com.zarinpal:payment-provider-ktx:0.6.3")
+
+
+
+
+
+
+
+
+
+
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
