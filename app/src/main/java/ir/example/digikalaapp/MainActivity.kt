@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import ir.example.digikalaapp.navigation.BottomNavigationBar
 import ir.example.digikalaapp.navigation.SetupNavGraph
 import ir.example.digikalaapp.ui.theme.DigiKalaAppTheme
 
@@ -24,7 +25,7 @@ class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
         setContent {
             DigiKalaAppTheme {
 
@@ -32,7 +33,11 @@ class MainActivity : ComponentActivity() {
 
                 Scaffold(
                     bottomBar = {
-                        //todo bottomBar
+                        BottomNavigationBar(
+                            navController = navController,
+                            onItemClick = {
+                                navController.navigate(it.route)
+                            })
                     }
                 ) {
                     SetupNavGraph(navController = navController)
