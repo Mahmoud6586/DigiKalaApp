@@ -11,12 +11,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import ir.example.digikalaapp.navigation.BottomNavigationBar
 import ir.example.digikalaapp.navigation.SetupNavGraph
 import ir.example.digikalaapp.ui.theme.DigiKalaAppTheme
+import ir.example.digikalaapp.util.LocaleUtils
 
 class MainActivity : ComponentActivity() {
 
@@ -25,6 +27,8 @@ class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
 
         setContent {
             DigiKalaAppTheme {
