@@ -23,6 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import ir.example.digikalaapp.navigation.BottomNavigationBar
 import ir.example.digikalaapp.navigation.SetupNavGraph
 import ir.example.digikalaapp.ui.component.AppConfig
+import ir.example.digikalaapp.ui.component.ChangeStatusBarColor
 import ir.example.digikalaapp.ui.theme.DigiKalaAppTheme
 import ir.example.digikalaapp.util.Constants.ENGLISH_LANG
 import ir.example.digikalaapp.util.Constants.PERSIAN_LANG
@@ -44,7 +45,7 @@ class MainActivity : ComponentActivity() {
             DigiKalaAppTheme {
 
                 navController = rememberNavController()
-
+                ChangeStatusBarColor(navController)
                 AppConfig()
 
                 Log.e("3636", USER_LANGUAGE)
