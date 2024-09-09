@@ -56,7 +56,7 @@ dependencies {
     val retrofit_version = "2.9.0"
     val room_version = "2.3.0"
     val datastore_version = "1.0.0"
-    val hilt_version = "2.44"
+    val hilt_version = "2.51.1"
 
 
     implementation(libs.androidx.core.ktx)
