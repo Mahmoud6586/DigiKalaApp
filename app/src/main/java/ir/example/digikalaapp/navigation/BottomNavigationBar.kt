@@ -53,7 +53,7 @@ fun BottomNavigationBar(
             ), unSelectedIcon = painterResource(id = R.drawable.cart_outline)
         ),
         BottomNavItem(
-            name = stringResource(id = R.string.profile),
+            name = stringResource(id = R.string.my_digikala),
             route = Screen.Profile.route,
             selectedIcon = painterResource(
                 id = R.drawable.user_fill,
