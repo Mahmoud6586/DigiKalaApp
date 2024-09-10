@@ -22,7 +22,7 @@ object NetworkModule {
     @Provides
     @Singleton
     internal fun interceptor(): HttpLoggingInterceptor {
-        // It is to log requests
+        // It is used to log requests
         val logging = HttpLoggingInterceptor()
         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
         return logging
