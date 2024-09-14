@@ -1,13 +1,15 @@
 package ir.example.digikalaapp.di
 
-import androidx.room.PrimaryKey
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ir.example.digikalaapp.data.remote.ApiInterface
+import ir.example.digikalaapp.data.remote.HomeApiInterface
+import ir.example.digikalaapp.util.Constants.API_KEY
 import ir.example.digikalaapp.util.Constants.BASE_URL
 import ir.example.digikalaapp.util.Constants.TIMEOUT_IN_SECOND
+import ir.example.digikalaapp.util.Constants.USER_LANGUAGE
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -34,6 +36,13 @@ object NetworkModule {
         .connectTimeout(TIMEOUT_IN_SECOND, TimeUnit.SECONDS)
         .readTimeout(TIMEOUT_IN_SECOND, TimeUnit.SECONDS)
         .writeTimeout(TIMEOUT_IN_SECOND, TimeUnit.SECONDS)
+        .addInterceptor { chain ->
+            val request = chain.request().newBuilder()
+                .addHeader("x-api-key", API_KEY)
+                .addHeader("lang", USER_LANGUAGE)
+            chain.proceed(request.build())
+
+        }
         .addInterceptor(interceptor())
         .build()
 
@@ -46,8 +55,5 @@ object NetworkModule {
             .client(okHttpClient)
             .build()
 
-    @Provides
-    @Singleton
-    fun provideApiService(retrofit: Retrofit): ApiInterface =
-        retrofit.create(ApiInterface::class.java)
+
 }

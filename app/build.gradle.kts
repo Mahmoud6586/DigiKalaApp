@@ -1,9 +1,16 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
 }
+
+val apikeyPropertiesFile = rootProject.file("key.properties")
+val apikeyProperties = Properties()
+apikeyProperties.load(FileInputStream(apikeyPropertiesFile))
 
 android {
     namespace = "ir.example.digikalaapp"
@@ -15,6 +22,8 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+
+        buildConfigField("String", "X_API_KEY", apikeyProperties["X_API_KEY"].toString())
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -40,6 +49,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true // Enable BuildConfig fields
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -89,41 +99,33 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:$datastore_version")
 
     //hilt di
-    implementation ("com.google.dagger:hilt-android:$hilt_version")
-    kapt ("com.google.dagger:hilt-compiler:$hilt_version")
-    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation("com.google.dagger:hilt-android:$hilt_version")
+    kapt("com.google.dagger:hilt-compiler:$hilt_version")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
     //compose navigation
-    implementation ("androidx.navigation:navigation-compose:2.7.7")
+    implementation("androidx.navigation:navigation-compose:2.7.7")
 
     //animation
-    implementation ("com.airbnb.android:lottie-compose:6.5.0")
+    implementation("com.airbnb.android:lottie-compose:6.5.0")
 
     //coil - load image from url
-    implementation ("io.coil-kt:coil-compose:2.7.0")
+    implementation("io.coil-kt:coil-compose:2.7.0")
 
     //swipe refresh
-    implementation ("com.google.accompanist:accompanist-swiperefresh:0.27.0")
+    implementation("com.google.accompanist:accompanist-swiperefresh:0.27.0")
 
     //system ui controller
-    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.28.0")
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.28.0")
 
 
     //Accompanist-Pager
-    implementation ("com.google.accompanist:accompanist-pager:0.29.0-alpha")
-    implementation ("com.google.accompanist:accompanist-pager-indicators:0.29.0-alpha")
+    implementation("com.google.accompanist:accompanist-pager:0.29.0-alpha")
+    implementation("com.google.accompanist:accompanist-pager-indicators:0.29.0-alpha")
 
 
     //zarinpal
 //    implementation ("com.zarinpal:payment-provider-ktx:0.6.3")
-
-
-
-
-
-
-
-
 
 
 }
