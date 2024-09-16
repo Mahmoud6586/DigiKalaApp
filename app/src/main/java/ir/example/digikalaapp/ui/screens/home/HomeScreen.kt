@@ -64,6 +64,7 @@ fun swipeRefreshSection(viewModel: HomeViewModel, navController: NavHostControll
 
             item { SearchBarSection() }
             item { TopSliderSection() }
+            item { ShowcaseSection(navController = navController) }
 
         }
 
