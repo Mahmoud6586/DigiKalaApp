@@ -8,4 +8,11 @@
     <string name="profile">Profile</string>
     <string name="search_in">search in</string>
     <string name="digikala_jet">DigiKala Jet</string>
+    <string name="digi_style">Digi Style</string>
+    <string name="digi_pay">Digi Pay</string>
+    <string name="pindo">Pindo</string>
+    <string name="gift_card">Gift Card</string>
+    <string name="digi_plus">Digi Plus</string>
+    <string name="more">More</string>
+    <string name="digi_shopping">Month Shopping</string>
 </resources>
