@@ -29,7 +29,16 @@ fun SplashScreen(navController: NavHostController) {
     Splash()
     LaunchedEffect(key1 = true) {
         delay(2500)
-        navController.navigate(Screen.Home.route)
+        navController.navigate(Screen.Home.route) {
+            //The code below removes the splash screen
+            //from the navigation stack. So, when we
+            // press the back button on home screen,
+            //it won't navigate back to splash screen
+            //and will quit the app properly
+            popUpTo(Screen.Splash.route) {
+                inclusive = true
+            }
+        }
     }
 }
 
