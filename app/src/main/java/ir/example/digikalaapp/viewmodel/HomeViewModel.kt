@@ -3,6 +3,7 @@ package ir.example.digikalaapp.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import ir.example.digikalaapp.data.model.home.AmazingItem
 import ir.example.digikalaapp.data.model.home.Slider
 import ir.example.digikalaapp.data.remote.NetworkResult
 import ir.example.digikalaapp.repository.HomeRepository
@@ -17,9 +18,22 @@ class HomeViewModel @Inject constructor(
 
     val slider = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
 
-    suspend fun getSlider() {
+    val amazingItems = MutableStateFlow<NetworkResult<List<AmazingItem>>>(NetworkResult.Loading())
+
+
+    suspend fun getAllDataFromServer() {
         viewModelScope.launch {
-            slider.emit(repository.getSlider())
+
+            launch {
+                slider.emit(repository.getSlider())
+            }
+
+            launch {
+                amazingItems.emit(repository.getAmazingItems())
+            }
+
         }
     }
+
+
 }

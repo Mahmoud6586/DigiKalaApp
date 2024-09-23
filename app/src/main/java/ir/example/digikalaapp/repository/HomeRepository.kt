@@ -1,5 +1,6 @@
 package ir.example.digikalaapp.repository
 
+import ir.example.digikalaapp.data.model.home.AmazingItem
 import ir.example.digikalaapp.data.model.home.Slider
 import ir.example.digikalaapp.data.remote.BaseApiResponse
 import ir.example.digikalaapp.data.remote.HomeApiInterface
@@ -13,5 +14,10 @@ class HomeRepository @Inject constructor(
     suspend fun getSlider(): NetworkResult<List<Slider>> =
         safeApiCall {
             api.getSlider()
+        }
+
+    suspend fun getAmazingItems(): NetworkResult<List<AmazingItem>> =
+        safeApiCall {
+            api.getAmazingItems()
         }
 }
