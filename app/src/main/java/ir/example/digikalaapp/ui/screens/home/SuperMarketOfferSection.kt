@@ -17,14 +17,17 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import ir.example.digikalaapp.R
 import ir.example.digikalaapp.data.model.home.AmazingItem
 import ir.example.digikalaapp.data.remote.NetworkResult
+import ir.example.digikalaapp.ui.theme.DigikalaLightGreen
 import ir.example.digikalaapp.ui.theme.DigikalaLightRed
 import ir.example.digikalaapp.viewmodel.HomeViewModel
-import java.lang.reflect.Modifier
+import kotlinx.coroutines.flow.MutableStateFlow
 
 @Composable
-fun AmazingOfferSection(viewModel: HomeViewModel = hiltViewModel()) {
+fun SuperMarketOfferSection(
+    viewModel: HomeViewModel = hiltViewModel()
+) {
 
-    var amazingItemList by remember {
+    var superMarketItemList by remember {
         mutableStateOf<List<AmazingItem>>(emptyList())
     }
 
@@ -32,22 +35,21 @@ fun AmazingOfferSection(viewModel: HomeViewModel = hiltViewModel()) {
         mutableStateOf(false)
     }
 
-    val amazingItemResult by viewModel.amazingItems.collectAsState()
 
-    when (amazingItemResult) {
+    val superMarketItemResult by viewModel.superMarketItems.collectAsState()
+    when (superMarketItemResult) {
         is NetworkResult.Success -> {
-            amazingItemList = amazingItemResult.data ?: emptyList()
+            superMarketItemList = superMarketItemResult.data ?: emptyList()
             loading = false
-            Log.e("3636", "item : ${amazingItemList[0].name}")
-        }
-
-        is NetworkResult.Error -> {
-            loading = false
-            Log.e("3636", "Amazing offer section error : ${amazingItemResult.message}")
         }
 
         is NetworkResult.Loading -> {
             loading = true
+        }
+
+        is NetworkResult.Error -> {
+            loading = false
+            Log.e("3636", "SuperMarketAmazingSection error: ${superMarketItemResult.message}")
         }
     }
 
@@ -57,15 +59,15 @@ fun AmazingOfferSection(viewModel: HomeViewModel = hiltViewModel()) {
             .background(MaterialTheme.colors.DigikalaLightRed)
     ) {
 
-        LazyRow(modifier = androidx.compose.ui.Modifier.background(MaterialTheme.colors.DigikalaLightRed)) {
+        LazyRow(modifier = androidx.compose.ui.Modifier.background(MaterialTheme.colors.DigikalaLightGreen)) {
             item {
                 AmazingOfferCard(
-                    topImageResId = R.drawable.amazings,
-                    bottomImageResId = R.drawable.box
+                    topImageResId = R.drawable.supermarketamazings,
+                    bottomImageResId = R.drawable.fresh
                 )
             }
 
-            items(amazingItemList) { item ->
+            items(superMarketItemList) { item ->
                 AmazingItem(item = item)
             }
             item {
@@ -74,4 +76,5 @@ fun AmazingOfferSection(viewModel: HomeViewModel = hiltViewModel()) {
         }
 
     }
+
 }
