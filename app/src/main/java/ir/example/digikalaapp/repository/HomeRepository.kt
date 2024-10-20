@@ -1,7 +1,9 @@
 package ir.example.digikalaapp.repository
 
 import ir.example.digikalaapp.data.model.home.AmazingItem
+import ir.example.digikalaapp.data.model.home.MainCategory
 import ir.example.digikalaapp.data.model.home.Slider
+import ir.example.digikalaapp.data.model.home.StoreProduct
 import ir.example.digikalaapp.data.remote.BaseApiResponse
 import ir.example.digikalaapp.data.remote.HomeApiInterface
 import ir.example.digikalaapp.data.remote.NetworkResult
@@ -27,5 +29,19 @@ class HomeRepository @Inject constructor(
     suspend fun getProposalBanners(): NetworkResult<List<Slider>> =
         safeApiCall { api.getProposalBanners() }
 
+    suspend fun getCategories(): NetworkResult<List<MainCategory>> =
+        safeApiCall { api.getCategories() }
+
+    suspend fun getCenterBanner(): NetworkResult<List<Slider>> =
+        safeApiCall { api.getCenterBanners() }
+
+    suspend fun getBestSellerItems(): NetworkResult<List<StoreProduct>> =
+        safeApiCall { api.getBestSellerItems() }
+
+    suspend fun getMostVisitedItems(): NetworkResult<List<StoreProduct>> =
+        safeApiCall { api.getMostVisitedItems() }
+
+    suspend fun getMostFavoriteItems(): NetworkResult<List<StoreProduct>> =
+        safeApiCall { api.getMostFavoriteItems() }
 
 }

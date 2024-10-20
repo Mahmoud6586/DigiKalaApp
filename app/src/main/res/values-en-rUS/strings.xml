@@ -17,4 +17,8 @@
     <string name="digi_shopping">Month Shopping</string>
     <string name="see_all">See All</string>
     <string name="amazing_for_app">Amazing exclusive app</string>
+    <string name="category_title">Shop by category</string>
+    <string name="best_selling_products">Best Selling Products</string>
+    <string name="best_visited_products">Most visited Products</string>
+    <string name="favorite_Product">Favorite Products</string>
 </resources>

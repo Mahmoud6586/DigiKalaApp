@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.example.digikalaapp.data.model.home.AmazingItem
+import ir.example.digikalaapp.data.model.home.MainCategory
 import ir.example.digikalaapp.data.model.home.Slider
+import ir.example.digikalaapp.data.model.home.StoreProduct
 import ir.example.digikalaapp.data.remote.NetworkResult
 import ir.example.digikalaapp.repository.HomeRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,6 +27,20 @@ class HomeViewModel @Inject constructor(
 
     val banners = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
 
+    val categories = MutableStateFlow<NetworkResult<List<MainCategory>>>(NetworkResult.Loading())
+
+    val centerBanners = MutableStateFlow<NetworkResult<List<Slider>>>(NetworkResult.Loading())
+
+    val bestSellerItems =
+        MutableStateFlow<NetworkResult<List<StoreProduct>>>(NetworkResult.Loading())
+
+
+    val mostVisitedItems =
+        MutableStateFlow<NetworkResult<List<StoreProduct>>>(NetworkResult.Loading())
+
+    val mostFavoriteItems =
+        MutableStateFlow<NetworkResult<List<StoreProduct>>>(NetworkResult.Loading())
+
 
     suspend fun getAllDataFromServer() {
         viewModelScope.launch {
@@ -44,6 +60,16 @@ class HomeViewModel @Inject constructor(
             launch {
                 banners.emit(repository.getProposalBanners())
             }
+
+            launch { categories.emit(repository.getCategories()) }
+
+            launch { centerBanners.emit(repository.getCenterBanner()) }
+
+            launch { bestSellerItems.emit(repository.getBestSellerItems()) }
+
+            launch { mostVisitedItems.emit(repository.getMostVisitedItems()) }
+
+            launch { mostFavoriteItems.emit(repository.getMostFavoriteItems()) }
 
         }
     }
