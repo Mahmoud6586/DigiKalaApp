@@ -78,6 +78,8 @@ fun swipeRefreshSection(viewModel: HomeViewModel, navController: NavHostControll
             item { MostVisitedOfferSection() }
 
             item { CenterBannerSection(4) }
+            item { CenterBannerSection(5) }
+            item { MostDiscountedSection() }
 
         }
 
