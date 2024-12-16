@@ -167,7 +167,7 @@ fun AmazingItem(item: AmazingItem) {
                                     ).toString()
                                 )
                             )
-                            Image(
+                            Icon(
                                 painter = painterResource(id = R.drawable.toman),
                                 contentDescription = "",
                                 modifier = Modifier

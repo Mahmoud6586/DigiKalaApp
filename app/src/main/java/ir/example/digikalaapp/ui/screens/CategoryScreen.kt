@@ -13,14 +13,11 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun CategoryScreen(navController: NavHostController) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Green),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
+Category()
+}
 
-        Text(text = "Category Screen")
-    }
+
+@Composable
+fun Category(){
+
 }

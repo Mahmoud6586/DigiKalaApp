@@ -1,49 +1,50 @@
-package ir.example.digikalaapp.ui.screens.home
+package ir.example.digikalaapp.ui.screens.category
 
 import android.util.Log
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import ir.example.digikalaapp.util.Constants.USER_LANGUAGE
-import ir.example.digikalaapp.util.LocaleUtils
-import ir.example.digikalaapp.viewmodel.HomeViewModel
+
+import ir.example.digikalaapp.ui.screens.home.SearchBarSection
+
+import ir.example.digikalaapp.viewmodel.CategoryViewModel
 import kotlinx.coroutines.launch
 
 @Composable
-fun HomeScreen(navController: NavHostController) {
-    Home(navController = navController)
+fun CategoryScreen(navController: NavHostController) {
+    Category(navController = navController)
 }
 
 @Composable
-fun Home(
+fun Category(
     navController: NavHostController,
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: CategoryViewModel = hiltViewModel()
 ) {
-    LocaleUtils.setLocale(LocalContext.current, USER_LANGUAGE)
-
     LaunchedEffect(key1 = true) {
         refreshDataFromServer(viewModel = viewModel)
 
     }
 
     swipeRefreshSection(viewModel = viewModel, navController = navController)
-
-
 }
 
-
 @Composable
-private fun swipeRefreshSection(viewModel: HomeViewModel, navController: NavHostController) {
+private fun swipeRefreshSection(viewModel: CategoryViewModel, navController: NavHostController) {
     val refreshScope = rememberCoroutineScope()
     val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = false)
 
@@ -63,23 +64,8 @@ private fun swipeRefreshSection(viewModel: HomeViewModel, navController: NavHost
         ) {
 
             item { SearchBarSection() }
-            item { TopSliderSection() }
-            item { ShowcaseSection(navController = navController) }
-            item { AmazingOfferSection() }
-            item { ProposalCardSection() }
-            item { SuperMarketOfferSection() }
-            item { CategoryListSection() }
-            item { CenterBannerSection(1) }
+            item { SubCategorySection() }
 
-            item { BestSellerOfferSection() }
-            item { CenterBannerSection(2) }
-            item { MostFavoriteProductSection() }
-            item { CenterBannerSection(3) }
-            item { MostVisitedOfferSection() }
-
-            item { CenterBannerSection(4) }
-            item { CenterBannerSection(5) }
-            item { MostDiscountedSection() }
 
         }
 
@@ -87,6 +73,6 @@ private fun swipeRefreshSection(viewModel: HomeViewModel, navController: NavHost
     }
 }
 
-private suspend fun refreshDataFromServer(viewModel: HomeViewModel) {
+private suspend fun refreshDataFromServer(viewModel: CategoryViewModel) {
     viewModel.getAllDataFromServer()
 }
