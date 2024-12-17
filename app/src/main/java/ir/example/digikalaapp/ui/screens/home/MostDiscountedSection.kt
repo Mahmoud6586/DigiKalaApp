@@ -75,7 +75,7 @@ fun MostDiscountedSection(
             maxItemsInEachRow = 2, modifier = Modifier
                 .fillMaxSize()
                 .wrapContentHeight(),
-            horizontalArrangement = Arrangement.Center
+            horizontalArrangement = Arrangement.Start
         ) {
             for(item in mostDiscountedList){
                 MostDiscountedCard(item)
